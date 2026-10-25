@@ -82,6 +82,7 @@ printf 'outside\n' > "$TMP/outside.txt"
 printf 'payload\n' > "$SYMLINK_SOURCE/child/file.txt"
 ln -s "$TMP" "$SYMLINK_DEST/child"
 assert_fails 'rejects symlinked destination directories' copy_payload "$SYMLINK_SOURCE" "$SYMLINK_DEST"
+assert_fails 'refuses to verify through symlinked destination directories' verify_payload "$SYMLINK_SOURCE" "$SYMLINK_DEST"
 [[ ! -e "$TMP/child/file.txt" ]] || { printf 'FAIL followed a destination symlink\n' >&2; exit 1; }
 
 NEWLINE_SOURCE="$TMP/newline-source"
