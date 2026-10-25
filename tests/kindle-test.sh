@@ -40,6 +40,10 @@ assert_equal() {
   if [[ "$expected" == "$actual" ]]; then printf 'PASS %s\n' "$label"; else printf 'FAIL %s: expected <%s>, got <%s>\n' "$label" "$expected" "$actual" >&2; exit 1; fi
 }
 
+assert_fails 'requires explicit device arguments at the command line' main check
+assert_fails 'rejects unknown command-line options' main check --automatic-device
+assert_ok 'checks the exact explicitly selected mount from the CLI' main check --device "$FAKE_DEVICE" --mountpoint "$MOCK_MOUNT"
+
 assert_ok 'accepts only the explicitly mounted device' validate_target "$FAKE_DEVICE" "$MOCK_MOUNT"
 
 MOCK_SOURCE="$TMP/other-device"
