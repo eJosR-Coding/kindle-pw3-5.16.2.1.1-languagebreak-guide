@@ -2,3 +2,5 @@
 downloads/
 backups/
 .env
+# Keep the local CodeGraph index out of version control.
+.codegraph/
