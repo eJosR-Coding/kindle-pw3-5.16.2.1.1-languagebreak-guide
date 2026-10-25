@@ -81,6 +81,17 @@ See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for the observed copy-window failur
 
 ## Source and attribution
 
-The upstream LanguageBreak project owns its installation procedure and release files: [notmarek/LanguageBreak README](https://github.com/notmarek/LanguageBreak/blob/master/README.MD). This guide summarizes only the portions needed to frame the firsthand notes; consult upstream before acting because its instructions and releases may change.
+This guide does not claim authorship of the tools below and does not bundle their software or payloads. The links were checked on 2026-10-25; use each project's current upstream instructions and releases because pages and supported versions can change.
+
+- [LanguageBreak](https://github.com/notmarek/LanguageBreak/blob/master/README.MD) — upstream jailbreak project and installation procedure. Its README warns that the process deletes device content.
+- [KUAL: Kindle Unified Application Launcher](https://www.mobileread.com/forums/showthread.php?t=203326) — original MobileRead release thread, started by twobob.
+- [KindleModding: Installing KUAL/MRPI](https://kindlemodding.gitbook.io/kindlemodding/post-jailbreak/installing-kual-mrpi) — setup reference for KUAL and MRPI. The firsthand note above records that KUAL worked via the MRPI booklet after `;log mrpi`; it does not assert that this guide authored either project.
+- [PEKI](https://github.com/KindleTweaks/PEKI) — attempted during the recorded session; its `KUAL.sh` library entry did not appear.
+- [KOReader](https://github.com/koreader/koreader) — upstream reader project; version and device target in this guide are firsthand session details, not a current download recommendation.
+- [LocalSend KOReader plugin](https://github.com/kaikozlov/localsend.koplugin) — upstream plugin project; listed here because it was installed in the recorded session.
+- [SimpleUI KOReader plugin](https://github.com/doctorhetfield-cmd/simpleui.koplugin) — upstream plugin project; listed here because it was used in the recorded session.
+- [Project: Title](https://github.com/joshuacant/ProjectTitle) — upstream KOReader plugin; tested and later removed in the recorded setup.
+
+This guide's device results are firsthand notes from one PW3 session; they are not endorsements, compatibility guarantees, or proof that current upstream files are safe for every device. Back up files visible over USB before following upstream steps, and do not infer firmware support from a USB copy or the illustrations above.
 
 Device-specific results in this guide are labeled as firsthand observations from one session. All other compatibility and procedure claims are either attributed to upstream or explicitly left unverified.
