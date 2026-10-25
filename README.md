@@ -93,5 +93,3 @@ This guide does not claim authorship of the tools below and does not bundle thei
 - [Project: Title](https://github.com/joshuacant/ProjectTitle) — upstream KOReader plugin; tested and later removed in the recorded setup.
 
 This guide's device results are firsthand notes from one PW3 session; they are not endorsements, compatibility guarantees, or proof that current upstream files are safe for every device. Back up files visible over USB before following upstream steps, and do not infer firmware support from a USB copy or the illustrations above.
-
-Device-specific results in this guide are labeled as firsthand observations from one session. All other compatibility and procedure claims are either attributed to upstream or explicitly left unverified.
