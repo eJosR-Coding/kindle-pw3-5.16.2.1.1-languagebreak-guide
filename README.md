@@ -38,7 +38,16 @@ Do not treat a successful file copy as proof that firmware is supported or that 
 
 When the Kindle is in USB storage mode, the host sees a mounted filesystem for file transfer. That is not a firmware-verification mode. Before unplugging, use the desktop's safe-eject action or unmount the exact Kindle volume and wait for completion. If the Kindle is in KOReader, exit KOReader before reconnecting for USB mass storage; that was required in the recorded setup.
 
-The helper in `scripts/kindle.sh` is intended only for an explicitly named source directory and explicitly identified mounted device. It does not auto-select a disk, remove files, install payloads, or configure autostart. Review its instructions before use. A helper-side hash match means only that the selected source and destination file bytes matched at the time of the check.
+The Linux helper in `scripts/kindle.sh` requires an explicit block-device path and mount point; `check` must pass before copying. For example, replace each placeholder with a path you have independently identified:
+
+```bash
+bash scripts/kindle.sh check --device /dev/DEVICE_PARTITION --mountpoint /path/to/kindle-mount
+bash scripts/kindle.sh copy --device /dev/DEVICE_PARTITION --mountpoint /path/to/kindle-mount --source /path/to/extracted-payload
+bash scripts/kindle.sh verify --device /dev/DEVICE_PARTITION --mountpoint /path/to/kindle-mount --source /path/to/extracted-payload
+bash scripts/kindle.sh eject --device /dev/DEVICE_PARTITION --mountpoint /path/to/kindle-mount
+```
+
+The helper does not search for a disk, mount it, remove files, install payloads, or configure autostart. It refuses to overwrite existing destination paths. If a later file fails to copy, earlier verified files may remain; inspect the device before retrying. `eject` asks UDisks to unmount and power off the explicitly selected block device. UDisks notes that powering off a physical device with multiple drives can affect the other drives too; do not use this helper for shared multi-drive hardware. The helper has only been tested offline with mocks, not against Kindle hardware. A helper-side byte comparison means only that selected source and destination files matched during the check; it cannot verify firmware or installation state. See the [UDisks command reference](https://storaged.org/udisks/docs/udisksctl.1.html) for safe-removal behavior and limitations.
 
 ## Post-install software notes
 
