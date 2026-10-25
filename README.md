@@ -32,13 +32,19 @@ The upstream README contains the complete procedure and should be followed for e
 - A later attempt transferred the files in the required window; the jailbreak log showed the messages listed above.
 - The locale-matched `es-MX` hotfix then completed successfully. Upstream advises retrying its hotfix step after an update-error screen; this does not establish that every failure has the same cause.
 
+![AI-generated illustration of a Kindle restarting; not a photograph of the tested Kindle and not installation evidence.](assets/kindle-restart-ai-illustration.png)
+
+*Illustration generated with AI; not a photograph of the tested Kindle / not installation evidence.*
+
 Do not treat a successful file copy as proof that firmware is supported or that the jailbreak completed. The USB host can compare bytes in files it copied, but it cannot verify Kindle firmware or interpret the device's internal state.
 
 ## USB transfer and safe removal
 
 When the Kindle is in USB storage mode, the host sees a mounted filesystem for file transfer. That is not a firmware-verification mode. Before unplugging, use the desktop's safe-eject action or unmount the exact Kindle volume and wait for completion. If the Kindle is in KOReader, exit KOReader before reconnecting for USB mass storage; that was required in the recorded setup.
 
-The Linux helper in `scripts/kindle.sh` requires an explicit block-device path and mount point; `check` must pass before copying. For example, replace each placeholder with a path you have independently identified:
+**Do not use the helper for either LanguageBreak payload transfer.** The upstream flow copies its payload twice and may require replacing files on the second, time-sensitive transfer. This helper intentionally refuses to overwrite existing paths and has no overwrite option. Follow the [upstream manual transfer steps](https://github.com/notmarek/LanguageBreak/blob/master/README.MD) for both copies.
+
+For other explicit file transfers, the Linux helper in `scripts/kindle.sh` requires a block-device path and mount point that you have independently identified; `check` must pass before copying. For example, replace each placeholder with the correct paths:
 
 ```bash
 bash scripts/kindle.sh check --device /dev/DEVICE_PARTITION --mountpoint /path/to/kindle-mount
@@ -51,8 +57,18 @@ The helper does not search for a disk, mount it, remove files, install payloads,
 
 ## Post-install software notes
 
-- KUAL was installed using an MRPI booklet after PEKI, but the booklet did not appear in the Kindle UI during the recorded session. That observation alone does not establish that KUAL was unavailable or that the same sequence will fail on another device.
-- KOReader and LocalSend were recorded at the versions in the table above. `Project: Title` was removed after it conflicted with SimpleUI.
+- **KUAL:** The PEKI (`KUAL.sh`) entry did not appear in the library. KUAL then worked after opening MRPI with `;log mrpi` and running its booklet. A `kppmainappv2` core dump was also recorded; it did not prevent KUAL from working.
+
+  ![AI-generated mockup of a Kindle library search showing a KUAL item; not a photograph of the tested Kindle and not installation evidence.](assets/kindle-kual-library-ai-illustration.png)
+
+  *Illustration generated with AI; not a photograph of the tested Kindle / not installation evidence.*
+
+- **KOReader:** Version v2026.07.1 (`kindlepw2`) ran in the recorded session. LocalSend v1.4.5 (`armv7`) was also installed; `Project: Title` was removed after it conflicted with SimpleUI.
+
+  ![AI-generated mockup of a Kindle displaying a KOReader Quickstart Guide; not a photograph of the tested Kindle and not installation evidence.](assets/kindle-koreader-quickstart-ai-illustration.png)
+
+  *Illustration generated with AI; not a photograph of the tested Kindle / not installation evidence.*
+
 - KOReader autostart was deliberately declined and is not installed by this guide or helper.
 
 ## Troubleshooting
