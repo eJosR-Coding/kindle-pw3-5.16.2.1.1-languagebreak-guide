@@ -90,6 +90,11 @@ mkdir -p "$NEWLINE_SOURCE" "$NEWLINE_DEST"
 printf 'payload\n' > "$NEWLINE_SOURCE/"$'bad\nname'
 assert_fails 'rejects paths that break destination path validation' copy_payload "$NEWLINE_SOURCE" "$NEWLINE_DEST"
 
+NESTED_ROOT="$TMP/nested-root"
+mkdir -p "$NESTED_ROOT/source" "$NESTED_ROOT/destination"
+printf 'payload\n' > "$NESTED_ROOT/source/file.txt"
+assert_fails 'rejects overlapping source and destination trees' copy_payload "$NESTED_ROOT/source" "$NESTED_ROOT"
+
 printf 'tampered\n' > "$DEST/file.bin"
 assert_fails 'detects changed destination bytes' verify_payload "$SOURCE" "$DEST"
 
