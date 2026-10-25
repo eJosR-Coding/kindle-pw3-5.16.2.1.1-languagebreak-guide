@@ -1,0 +1,4 @@
+# Keep downloaded payloads and device backups out of this repository.
+downloads/
+backups/
+.env
