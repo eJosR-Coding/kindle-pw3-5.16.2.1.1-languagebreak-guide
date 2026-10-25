@@ -9,8 +9,8 @@ These constraints keep this repository useful without turning one successful PW3
 | Keep the file backup distinct from a device or firmware image. | USB-visible files are not a complete representation of Kindle firmware or all recoverable state. |
 | Require the operator to name the source payload, exact mounted device, and mount point. | Labels and model strings can select the wrong disk; ambiguity must stop the operation. USB does not verify firmware. |
 | Refuse to overwrite existing destination files and never delete device files. | Existing files may be unrelated or valuable. The operator must resolve conflicts deliberately instead of relying on recursive overwrite or filename cleanup. |
-| Limit the helper to host-side check, copy, byte verification, and safe removal. | No automatic mounting, jailbreak execution, payload download, update cleanup, Kindle-side commands, or autostart is in scope. |
+| Limit the helper to host-side check, copy, byte verification, and explicit UDisks safe removal. | No automatic mounting, jailbreak execution, payload download, update cleanup, Kindle-side commands, or autostart is in scope. UDisks warns that powering off hardware exposing multiple drives can affect its other drives, so the helper is unsuitable for shared multi-drive devices. |
 | Keep third-party payloads and personal backups out of the repository. | The public repository should contain instructions and helper code, not private data or redistributed binaries. |
 | Do not add a license without an explicit license choice. | License terms should not be inferred from the subject matter or from a convenient template. |
 
-The helper's verification result is intentionally narrow: matching source/destination bytes confirm only that file copy, not firmware compatibility or successful installation.
+The helper's verification result is intentionally narrow: matching source/destination bytes confirm only that file copy, not firmware compatibility or successful installation. Its block-device checks and copy logic are tested offline with mocks; no Kindle hardware test is claimed.
