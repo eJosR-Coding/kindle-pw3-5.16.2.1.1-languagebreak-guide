@@ -75,6 +75,21 @@ mkdir -p "$LINK_SOURCE" "$LINK_DEST"
 ln -s "$SOURCE/file.bin" "$LINK_SOURCE/payload-link"
 assert_fails 'rejects symbolic links in source payloads' copy_payload "$LINK_SOURCE" "$LINK_DEST"
 
+SYMLINK_SOURCE="$TMP/symlink-destination-source"
+SYMLINK_DEST="$TMP/symlink-destination"
+mkdir -p "$SYMLINK_SOURCE/child" "$SYMLINK_DEST"
+printf 'outside\n' > "$TMP/outside.txt"
+printf 'payload\n' > "$SYMLINK_SOURCE/child/file.txt"
+ln -s "$TMP" "$SYMLINK_DEST/child"
+assert_fails 'rejects symlinked destination directories' copy_payload "$SYMLINK_SOURCE" "$SYMLINK_DEST"
+[[ ! -e "$TMP/child/file.txt" ]] || { printf 'FAIL followed a destination symlink\n' >&2; exit 1; }
+
+NEWLINE_SOURCE="$TMP/newline-source"
+NEWLINE_DEST="$TMP/newline-destination"
+mkdir -p "$NEWLINE_SOURCE" "$NEWLINE_DEST"
+printf 'payload\n' > "$NEWLINE_SOURCE/"$'bad\nname'
+assert_fails 'rejects paths that break destination path validation' copy_payload "$NEWLINE_SOURCE" "$NEWLINE_DEST"
+
 printf 'tampered\n' > "$DEST/file.bin"
 assert_fails 'detects changed destination bytes' verify_payload "$SOURCE" "$DEST"
 
