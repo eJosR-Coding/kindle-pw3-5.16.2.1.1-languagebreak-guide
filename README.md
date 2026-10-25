@@ -1,5 +1,9 @@
 # Kindle Paperwhite 3 LanguageBreak: firmware 5.16.2.1.1
 
+![User-supplied AI illustration of a Kindle Paperwhite 3 displaying manga beside the LanguageBreak firmware title; not a photograph of the tested device or installation evidence.](assets/kindle-paperwhite-3-languagebreak-banner.png)
+
+*User-supplied AI illustration; not a photograph of the tested Kindle or proof of a working installation.*
+
 A first-hand record of one Kindle Paperwhite 3 (7th generation) LanguageBreak installation, plus cautious host-side transfer guidance. It is not a compatibility claim or a replacement for the upstream instructions.
 
 > **Data loss:** LanguageBreak's upstream README warns that the method deletes all content on the device. Back up files you need before starting. This guide covers the files visible over USB; it does not create or verify a firmware image.
