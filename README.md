@@ -70,18 +70,26 @@ The upstream README has different follow-up instructions for Kindles registered 
 
 ## After jailbreak: what worked and what did not
 
-- **KUAL:** The PEKI (`KUAL.sh`) item did not appear in the library. KUAL later worked after I opened MRPI with `;log mrpi` and ran its booklet. A `kppmainappv2` core dump was also recorded; it did not prevent KUAL from working. See the [KUAL thread](https://www.mobileread.com/forums/showthread.php?t=203326) and the [KUAL/MRPI setup guide](https://kindlemodding.gitbook.io/kindlemodding/post-jailbreak/installing-kual-mrpi).
+The steps below describe my recorded sequence. The project links provide current package-specific instructions; I did not keep a complete command-by-command transcript for every package, so the exact upstream install procedure is not presented as something I independently verified on this device.
+
+1. **Get a working launcher.** I first tried the PEKI (`KUAL.sh`) library entry, but it did not appear. I then opened MRPI with `;log mrpi` and ran the KUAL booklet installer; KUAL worked afterward. A `kppmainappv2` core dump was also recorded, but did not prevent KUAL from working. For current package variants and staging steps, see the [KUAL/MRPI setup guide](https://kindlemodding.gitbook.io/kindlemodding/post-jailbreak/installing-kual-mrpi) and the [KUAL thread](https://www.mobileread.com/forums/showthread.php?t=203326).
 
   ![Illustration of a Kindle library search showing a KUAL item; not a photograph of the tested Kindle or installation evidence.](assets/kindle-kual-library-ai-illustration.png)
 
   *Illustration only; not a photograph of the tested Kindle or installation evidence.*
-- **KOReader and UI:** KOReader v2026.07.1 (`kindlepw2`) ran in the recorded session, and SimpleUI 2.7.5 was used. Exit KOReader before reconnecting for USB storage.
+
+2. **Install and launch KOReader.** The session used KOReader v2026.07.1 for the `kindlepw2` target, and KOReader launched on the Kindle. These are historical details, not version recommendations. The [official KOReader Kindle installation guide](https://github.com/koreader/koreader/wiki/Installation-on-Kindle-devices) currently maps firmware below 5.16.3 to the `kindlepw2` package family and describes the relevant KUAL launch path; follow that page for current package steps rather than copying an old version number.
 
   ![Illustration of a Kindle displaying a KOReader Quickstart Guide; not a photograph of the tested Kindle or installation evidence.](assets/kindle-koreader-quickstart-ai-illustration.png)
 
   *Illustration only; not a photograph of the tested Kindle or installation evidence.*
-- **LocalSend:** The KOReader plugin v1.4.5 (`armv7`) was installed.
-- **Project: Title:** I removed it after encountering a conflict with SimpleUI. This guide does not claim a successful setup of that plugin.
+
+3. **Use the UI plugin and handle the conflict.** SimpleUI 2.7.5 was active in my setup. I removed Project: Title after a conflict with SimpleUI; this note does not claim that Project: Title reached a working state. Consult the [SimpleUI project's current README](https://github.com/doctorhetfield-cmd/simpleui.koplugin) for its own installation details.
+
+4. **Optionally add LocalSend.** The LocalSend KOReader plugin v1.4.5 (`armv7`) was installed and worked in my session. It is optional; consult the [plugin's current project page](https://github.com/kaikozlov/localsend.koplugin) for package instructions. That version is a historical result, not a current recommendation.
+
+5. **Switch safely between reading and USB storage.** Exit KOReader before connecting the Kindle to the computer; that was required in this session, where the host reported a zero-byte `Media removed` message while KOReader was running. While the Kindle is in USB mass-storage mode, it is unavailable as a reader. Safely eject/unmount the Kindle volume and unplug it before using it to read again. KOReader's [official Kindle guide](https://github.com/koreader/koreader/wiki/Installation-on-Kindle-devices) also warns against switching to USB mass-storage while KOReader is running.
+
 - **Autostart:** KOReader autostart was deliberately declined; this guide does not configure it.
 
 For unrelated, explicit file transfers after setup, the Linux helper requires device and mount paths that you identify yourself. It has no disk discovery or mounting mode, refuses overwrites, and has only been tested offline with mocks. Do not use it for LanguageBreak payloads.
