@@ -80,7 +80,8 @@ assert_fails 'detects changed destination bytes' verify_payload "$SOURCE" "$DEST
 
 : > "$MOCK_EJECT_LOG"
 assert_ok 'ejects only the validated device' eject_device "$FAKE_DEVICE" "$MOCK_MOUNT"
-assert_equal 'uses the explicit volume for unmount and power-off' $'unmount --block-device '\''"$FAKE_DEVICE"'\''\npower-off --block-device '\''"$FAKE_DEVICE"'\''' "$(cat "$MOCK_EJECT_LOG")"
+printf -v EXPECTED_EJECT 'unmount --block-device %s\npower-off --block-device %s' "$FAKE_DEVICE" "$FAKE_DEVICE"
+assert_equal 'uses the explicit volume for unmount and power-off' "$EXPECTED_EJECT" "$(cat "$MOCK_EJECT_LOG")"
 
 MOCK_SOURCE="$TMP/other-device"
 : > "$MOCK_EJECT_LOG"
