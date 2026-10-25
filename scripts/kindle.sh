@@ -103,10 +103,10 @@ copy_payload() {
   source_real="$(readlink -f -- "$source")" || return
   target_real="$(readlink -f -- "$target")" || return
   validate_separate_trees "$source_real" "$target_real" || return
-  load_payload_files "$source" || return
+  load_payload_files "$source_real" || return
 
   for file in "${PAYLOAD_FILES[@]}"; do
-    relative="${file#"$source"/}"
+    relative="${file#"$source_real"/}"
     valid_relative_path "$relative" || return
     destination="$target/$relative"
     if destination_path_has_symlink "$target" "$relative"; then
@@ -117,7 +117,7 @@ copy_payload() {
   done
 
   for file in "${PAYLOAD_FILES[@]}"; do
-    relative="${file#"$source"/}"
+    relative="${file#"$source_real"/}"
     destination="$target/$relative"
     parent="$(dirname -- "$destination")"
     mkdir -p -- "$parent" || fail "Cannot create destination directory: $parent" || return
@@ -152,10 +152,10 @@ verify_payload() {
   source_real="$(readlink -f -- "$source")" || return
   target_real="$(readlink -f -- "$target")" || return
   validate_separate_trees "$source_real" "$target_real" || return
-  load_payload_files "$source" || return
+  load_payload_files "$source_real" || return
 
   for file in "${PAYLOAD_FILES[@]}"; do
-    relative="${file#"$source"/}"
+    relative="${file#"$source_real"/}"
     valid_relative_path "$relative" || return
     destination="$target/$relative"
     if destination_path_has_symlink "$target" "$relative"; then
