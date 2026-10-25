@@ -63,6 +63,11 @@ assert_ok 'copies hidden and regular files with verification' copy_payload "$SOU
 assert_equal 'copies the hidden file exactly' "$(cat "$SOURCE/.demo/boot.flag")" "$(cat "$DEST/.demo/boot.flag")"
 assert_ok 'verifies copied bytes' verify_payload "$SOURCE" "$DEST"
 
+TRAILING_DEST="$TMP/trailing-destination"
+mkdir -p "$TRAILING_DEST"
+assert_ok 'handles a source directory with a trailing slash' copy_payload "$SOURCE/" "$TRAILING_DEST"
+assert_equal 'places trailing-slash source files at destination root' "$(cat "$SOURCE/file.bin")" "$(cat "$TRAILING_DEST/file.bin")"
+
 CONFLICT_SOURCE="$TMP/conflict-source"
 CONFLICT_DEST="$TMP/conflict-destination"
 mkdir -p "$CONFLICT_SOURCE" "$CONFLICT_DEST"
