@@ -1,8 +1,8 @@
 # Kindle Paperwhite 3 LanguageBreak: firmware 5.16.2.1.1
 
-![User-supplied AI illustration of a Kindle Paperwhite 3 displaying manga beside the LanguageBreak firmware title; not a photograph of the tested device or installation evidence.](assets/kindle-paperwhite-3-languagebreak-banner.png)
+![User-supplied illustration of a Kindle Paperwhite 3 beside the LanguageBreak firmware title; illustrative only, not a photograph of the tested device or installation evidence.](assets/kindle-paperwhite-3-languagebreak-banner.png)
 
-*User-supplied AI illustration; not a photograph of the tested Kindle or proof of a working installation.*
+*User-supplied illustration; not a photograph of the tested Kindle or proof of a working installation.*
 
 A first-hand record of one Kindle Paperwhite 3 (7th generation) LanguageBreak installation, plus cautious host-side transfer guidance. It is not a compatibility claim or a replacement for the upstream instructions.
 
@@ -36,9 +36,9 @@ The upstream README contains the complete procedure and should be followed for e
 - A later attempt transferred the files in the required window; the jailbreak log showed the messages listed above.
 - The locale-matched `es-MX` hotfix then completed successfully. Upstream advises retrying its hotfix step after an update-error screen; this does not establish that every failure has the same cause.
 
-![AI-generated illustration of a Kindle restarting; not a photograph of the tested Kindle and not installation evidence.](assets/kindle-restart-ai-illustration.png)
+![Illustration of a Kindle restarting; not a photograph of the tested Kindle or installation evidence.](assets/kindle-restart-ai-illustration.png)
 
-*Illustration generated with AI; not a photograph of the tested Kindle / not installation evidence.*
+*Illustration; not a photograph of the tested Kindle or installation evidence.*
 
 Do not treat a successful file copy as proof that firmware is supported or that the jailbreak completed. The USB host can compare bytes in files it copied, but it cannot verify Kindle firmware or interpret the device's internal state.
 
@@ -63,21 +63,25 @@ The helper does not search for a disk, mount it, remove files, install payloads,
 
 - **KUAL:** The PEKI (`KUAL.sh`) entry did not appear in the library. KUAL then worked after opening MRPI with `;log mrpi` and running its booklet. A `kppmainappv2` core dump was also recorded; it did not prevent KUAL from working.
 
-  ![AI-generated mockup of a Kindle library search showing a KUAL item; not a photograph of the tested Kindle and not installation evidence.](assets/kindle-kual-library-ai-illustration.png)
+  ![Illustration of a Kindle library search showing a KUAL item; not a photograph of the tested Kindle or installation evidence.](assets/kindle-kual-library-ai-illustration.png)
 
-  *Illustration generated with AI; not a photograph of the tested Kindle / not installation evidence.*
+  *Illustration; not a photograph of the tested Kindle or installation evidence.*
 
 - **KOReader:** Version v2026.07.1 (`kindlepw2`) ran in the recorded session. LocalSend v1.4.5 (`armv7`) was also installed; `Project: Title` was removed after it conflicted with SimpleUI.
 
-  ![AI-generated mockup of a Kindle displaying a KOReader Quickstart Guide; not a photograph of the tested Kindle and not installation evidence.](assets/kindle-koreader-quickstart-ai-illustration.png)
+  ![Illustration of a Kindle displaying a KOReader Quickstart Guide; not a photograph of the tested Kindle or installation evidence.](assets/kindle-koreader-quickstart-ai-illustration.png)
 
-  *Illustration generated with AI; not a photograph of the tested Kindle / not installation evidence.*
+  *Illustration; not a photograph of the tested Kindle or installation evidence.*
 
 - KOReader autostart was deliberately declined and is not installed by this guide or helper.
 
 ## Troubleshooting
 
 See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for the observed copy-window failure, update-error handling, USB transfer checks, and scope limits.
+
+## Licensing
+
+The original prose in this guide, [troubleshooting notes](TROUBLESHOOTING.md), and [decisions](DECISIONS.md) is licensed under [CC BY 4.0](LICENSE-DOCS.md). The original Linux helper and offline test code are licensed under [MIT](LICENSE). These licenses do not cover the illustrations, upstream projects or instructions, or other third-party material; see the scope notes in the license files.
 
 ## Source and attribution
 
